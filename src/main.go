@@ -4,6 +4,9 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/user"
+	"path/filepath"
+	"strings"
 )
 
 func main() {
@@ -20,6 +23,19 @@ func main() {
 		}
 
 		seaching = currentWorkingDirectory
+	}
+
+	// Getting user home directory so we can find replace ~ as Go does not handle it.
+	usr, err := user.Current()
+
+	if err != nil {
+		panic(err)
+	}
+
+	home := usr.HomeDir
+
+	if strings.HasPrefix(seaching, "~/") {
+		seaching = filepath.Join(home, seaching[2:])
 	}
 
 	repositories := getRepositories(seaching)
