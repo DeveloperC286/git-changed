@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 set -o errexit
+set -o xtrace
 
 cp "go.mod" "go.mod.orig"
 go mod tidy -v

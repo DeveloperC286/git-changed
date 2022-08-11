@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 set -o errexit
+set -o xtrace
 
 # Get current version.
 current_version=$(cat VERSION)
