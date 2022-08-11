@@ -7,6 +7,8 @@ import (
 	"os/user"
 	"path/filepath"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -19,7 +21,7 @@ func main() {
 		currentWorkingDirectory, err := os.Getwd()
 
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 
 		seaching = currentWorkingDirectory
@@ -29,7 +31,7 @@ func main() {
 	usr, err := user.Current()
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	home := usr.HomeDir
