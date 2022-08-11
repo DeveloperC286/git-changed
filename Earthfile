@@ -110,4 +110,5 @@ releasing:
 	RUN curl --location --output /usr/local/bin/release-cli "https://release-cli-downloads.s3.amazonaws.com/latest/release-cli-linux-amd64"
 	RUN chmod +x /usr/local/bin/release-cli
     DO +COPY_METADATA
-    RUN ./ci/releasing.sh
+    ARG from_reference="origin/HEAD"
+    RUN ./ci/releasing.sh --from-reference "${from_reference}"

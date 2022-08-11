@@ -83,7 +83,7 @@ compiling:
 releasing:
   stage: releasing
   script:
-    - earthly --ci +releasing
+    - earthly --ci +releasing --from_reference "${CI_COMMIT_SHA}"
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
