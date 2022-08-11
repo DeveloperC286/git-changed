@@ -1,9 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"flag"
-	"fmt"
 	"os"
+	"os/exec"
 	"os/user"
 	"path/filepath"
 	"strings"
@@ -41,7 +42,28 @@ func main() {
 	}
 
 	repositories := getRepositories(seaching)
-	fmt.Println(repositories)
+
+	for _, repository := range repositories {
+		// Checking if their are uncommited local changes.
+		cmd := exec.Command("git", "diff-index", "HEAD")
+		// Execute the command inside specfic Git repository.
+		cmd.Dir = repository
+		// Setup reading the command's output.
+		stdout := new(bytes.Buffer)
+		stderr := new(bytes.Buffer)
+		cmd.Stdout = stdout
+		cmd.Stderr = stderr
+
+		err := cmd.Run()
+
+		if err != nil {
+			log.Error(err.Error())
+		}
+
+		if stdout.String() != "" {
+			log.Infof("Has %s has uncommited local changes.", repository)
+		}
+	}
 }
 
 func getRepositories(seaching string) []string {
@@ -55,11 +77,11 @@ func getRepositories(seaching string) []string {
 
 	for _, entry := range entries {
 		if entry.IsDir() {
-			path := seaching + "/" + entry.Name()
 
 			if entry.Name() == ".git" {
-				repositories = append(repositories, path)
+				repositories = append(repositories, seaching)
 			} else {
+				path := seaching + "/" + entry.Name()
 				repositories = append(repositories, getRepositories(path)...)
 			}
 		}
