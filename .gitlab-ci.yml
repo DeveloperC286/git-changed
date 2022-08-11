@@ -83,7 +83,7 @@ compiling:
 releasing:
   stage: releasing
   script:
-    - earthly --ci +releasing --from_reference "${CI_COMMIT_SHA}"
+    - earthly --ci +releasing --server-url "${CI_SERVER_URL}" --project_id "${CI_PROJECT_ID}" --reference "${CI_COMMIT_SHA}"
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
