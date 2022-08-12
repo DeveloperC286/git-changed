@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # ARG_POSITIONAL_SINGLE([server-url],[positional argument help  msg],[])
+# ARG_POSITIONAL_SINGLE([job-token],[positional argument help  msg],[])
 # ARG_POSITIONAL_SINGLE([project-id],[positional argument help  msg],[])
 # ARG_POSITIONAL_SINGLE([reference],[positional argument help  msg],[])
 # ARGBASH_GO()
@@ -21,8 +22,9 @@ die() {
 _positionals=()
 
 print_help() {
-	printf 'Usage: %s <server-url> <project-id> <reference>\n' "$0"
+	printf 'Usage: %s <server-url> <job-token> <project-id> <reference>\n' "$0"
 	printf '\t%s\n' "<server-url>: positional argument help  msg"
+	printf '\t%s\n' "<job-token>: positional argument help  msg"
 	printf '\t%s\n' "<project-id>: positional argument help  msg"
 	printf '\t%s\n' "<reference>: positional argument help  msg"
 }
@@ -38,14 +40,14 @@ parse_commandline() {
 }
 
 handle_passed_args_count() {
-	local _required_args_string="'server-url', 'project-id' and 'reference'"
-	test "${_positionals_count}" -ge 3 || _PRINT_HELP=yes die "FATAL ERROR: Not enough positional arguments - we require exactly 3 (namely: $_required_args_string), but got only ${_positionals_count}." 1
-	test "${_positionals_count}" -le 3 || _PRINT_HELP=yes die "FATAL ERROR: There were spurious positional arguments --- we expect exactly 3 (namely: $_required_args_string), but got ${_positionals_count} (the last one was: '${_last_positional}')." 1
+	local _required_args_string="'server-url', 'job-token', 'project-id' and 'reference'"
+	test "${_positionals_count}" -ge 4 || _PRINT_HELP=yes die "FATAL ERROR: Not enough positional arguments - we require exactly 4 (namely: $_required_args_string), but got only ${_positionals_count}." 1
+	test "${_positionals_count}" -le 4 || _PRINT_HELP=yes die "FATAL ERROR: There were spurious positional arguments --- we expect exactly 4 (namely: $_required_args_string), but got ${_positionals_count} (the last one was: '${_last_positional}')." 1
 }
 
 assign_positional_args() {
 	local _positional_name _shift_for=$1
-	_positional_names="_arg_server_url _arg_project_id _arg_reference "
+	_positional_names="_arg_server_url _arg_job_token _arg_project_id _arg_reference "
 
 	shift "$_shift_for"
 	for _positional_name in ${_positional_names}; do
@@ -82,6 +84,7 @@ release_description=$("${CARGO_HOME}/bin/git-cliff" "${latest_tag}.." --tag "${n
 # Create the new release.
 /usr/local/bin/release-cli \
 	--server-url "${_arg_server_url}" \
+	--job-token "${_arg_job_token}" \
 	--project-id "${_arg_project_id}" \
 	create \
 	--name "${new_tag}" \

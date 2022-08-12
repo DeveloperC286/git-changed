@@ -111,6 +111,7 @@ releasing:
 	RUN chmod +x /usr/local/bin/release-cli
     DO +COPY_METADATA
     ARG server_url
+    ARG job_token
     ARG project_id
     ARG reference
-    RUN ./ci/releasing.sh "${server_url}" "${project_id}" "${reference}"
+    RUN ./ci/releasing.sh "${server_url}" "${job_token}" "${project_id}" "${reference}"
