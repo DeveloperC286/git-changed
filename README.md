@@ -7,5 +7,9 @@
 A utility for listing all Git repositories with uncommitted changes.
 
 
+## Content
+ * [Issues/Feature Requests](#issuesfeature-requests)
+
+
 ## Issues/Feature Requests
 To report an issue or request a new feature use [https://gitlab.com/DeveloperC/git-changed/-/issues](https://gitlab.com/DeveloperC/git-changed/-/issues).
