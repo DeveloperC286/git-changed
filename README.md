@@ -5,3 +5,7 @@
 [![License](https://img.shields.io/badge/License-AGPLv3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 A utility for listing all Git repositories with uncommitted changes.
+
+
+## Issues/Feature Requests
+To report an issue or request a new feature use [https://gitlab.com/DeveloperC/git-changed/-/issues](https://gitlab.com/DeveloperC/git-changed/-/issues).
