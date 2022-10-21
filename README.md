@@ -8,8 +8,16 @@ A utility for listing all Git repositories with uncommitted changes.
 
 
 ## Content
+ * [Installation](#installation)
+   * [Go Install](#go-install)
  * [Issues/Feature Requests](#issuesfeature-requests)
 
+
+## Installation
+### Go Install
+```
+go install gitlab.com/DeveloperC/git-changed@latest
+```
 
 ## Issues/Feature Requests
 To report an issue or request a new feature use [https://gitlab.com/DeveloperC/git-changed/-/issues](https://gitlab.com/DeveloperC/git-changed/-/issues).
