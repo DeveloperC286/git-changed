@@ -15,7 +15,7 @@ A utility for listing all Git repositories with uncommitted changes.
 
 ## Installation
 ### Go Install
-```
+```sh
 go install gitlab.com/DeveloperC/git-changed@latest
 ```
 
