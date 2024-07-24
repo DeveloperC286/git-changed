@@ -20,4 +20,4 @@ go install gitlab.com/DeveloperC/git-changed@latest
 ```
 
 ## Issues/Feature Requests
-To report an issue or request a new feature use [https://gitlab.com/DeveloperC/git-changed/-/issues](https://gitlab.com/DeveloperC/git-changed/-/issues).
+To report an issue or request a new feature use [https://github.com/DeveloperC286/git-changed/issues](https://github.com/DeveloperC286/git-changed/issues).
